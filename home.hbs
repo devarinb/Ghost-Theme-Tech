@@ -1,0 +1,68 @@
+{{!-- Layouts --}}
+{{!< default}}
+
+{{#contentFor "mapache_class_body"}}is-home{{/contentFor}}
+{{#contentFor "mapache_class_site_main"}}pb4{{/contentFor}}
+
+{{!-- Home Top Section --}}
+<div class="h-cover home-banner u-marginAuto u-marginBottom30 u-clear">
+   {{#get "posts" filter="featured:true" limit="3" as |featured|}}
+   {{#foreach featured visibility="all"}}
+        {{!-- Home Top Section -> 3 first Articles - partials/story/story-cover.hbs --}}
+        {{> "story/story-cover" }}
+    {{/foreach}}
+    {{/get}}
+</div>
+
+{{!-- Post Grid - 4 latest article --}}
+<div class="extreme-container home-story-grid">
+    <h3 class= orange underline>Latest News</h3>
+    <div class="row u-marginBottom40">
+
+        {{#foreach posts visibility="all" from="1" to="4"}}
+            <div class="col col-s12 s6 m4 l3">
+                {{!-- Story Grid - partiasl/story/story-grid.hbs --}}
+                {{> "story/story-grid" class='u-fontSize20'}}
+            </div>
+        {{/foreach}}
+
+    </div>
+</div>
+
+
+{{!-- Post Grid - 4 internet article --}}
+<div class="extreme-container home-story-grid">
+    <h3 class= orange underline>Internet News</h3>
+    <div class="row u-marginBottom40">
+        {{#get "posts" filter="tags:[internet, gaming]+featured:false" limit="4" as |internet|}}
+        {{#foreach internet visibility="all"}}
+            <div class="col col-s12 s6 m4 l3">
+                {{!-- Story Grid - partiasl/story/story-grid.hbs --}}
+                {{> "story/story-grid" class='u-fontSize20'}}
+            </div>
+        {{/foreach}}
+        {{/get}}
+
+    </div>
+</div>
+
+
+
+
+{{!-- Post List - 5 latest articles --}}
+<div class="extreme-container">
+    <div class="row">
+        <div class="col col-left story-feed">
+            <div class="story-feed-content">
+
+                {{#foreach posts visibility="all" from="5" to="9"}}
+                    {{!-- Story List - partials/story/story-list.hbs --}}
+                    {{> "story/story-list"}}
+                {{/foreach}}
+
+            </div>
+        </div>
+        {{!-- Sidebar - partials/sidebar.hbs --}}
+        {{> "sidebar"}}
+    </div>
+</div>
